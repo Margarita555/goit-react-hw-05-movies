@@ -1,4 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
+import HomePage from '../HomePage/HomePage';
+import MovieDetailsPage from '../MovieDetailsPage/MovieDetailsPage';
 import AppBar from '../AppBar/AppBar';
 import Container from '../Container/Container';
 // import styles from './App.module.css';
@@ -8,7 +10,12 @@ function App() {
     <Container>
       <AppBar />
       <Routes>
-        <Route path="/"></Route>
+        <Route exact path="/" element={<HomePage />}></Route>
+        <Route
+          exact
+          path="/movies/:movieId"
+          element={<MovieDetailsPage />}
+        ></Route>
       </Routes>
     </Container>
   );
