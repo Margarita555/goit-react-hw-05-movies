@@ -3,17 +3,11 @@ import styles from './Navigation';
 
 const Navigation = () => (
   <nav>
-    <NavLink
-      exact
-      to="/"
-      className={styles.link}
-      activeClassName={styles.activeLink}
-    >
+    <NavLink to="/" className={styles.link} activeClassName={styles.activeLink}>
       Home
     </NavLink>
     <NavLink
-      exact
-      to="/movies"
+      to="movies"
       className={styles.link}
       activeClassName={styles.activeLink}
     >

@@ -19,11 +19,14 @@ export function fetchMovieById(movieId) {
   );
 }
 
-// export function fetchMovieById2(movieId) {
-//   return fetchWithErrorHandling(
-//     `${BASE_URL}/3/movie/${movieId}/dune?api_key=${API_KEY}&language=en-US`,
-//   );
-// }
+export function fetchMovieCast(movieId) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`,
+  );
+}
+// https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
+
+// https://api.themoviedb.org/3/credit/{credit_id}?api_key=<<api_key>>
 
 // https://api.themoviedb.org/3/movie/{movie_id}/alternative_titles?api_key=<<api_key>>
 
