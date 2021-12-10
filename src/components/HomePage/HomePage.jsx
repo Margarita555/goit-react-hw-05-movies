@@ -18,9 +18,7 @@ export default function HomeView() {
       <ul>
         {trendingMovies.map(movie => (
           <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>
-              {movie.title ? movie.title : movie.name}
-            </Link>
+            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
           </li>
         ))}
       </ul>

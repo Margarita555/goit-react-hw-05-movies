@@ -9,6 +9,24 @@ async function fetchWithErrorHandling(url = '', config = {}) {
 }
 export function fetchTrendingMovies() {
   return fetchWithErrorHandling(
-    `${BASE_URL}/3/trending/all/day?api_key=${API_KEY}`,
+    `${BASE_URL}/3/trending/movie/day?api_key=${API_KEY}`,
   );
 }
+
+export function fetchMovieById(movieId) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`,
+  );
+}
+
+// export function fetchMovieById2(movieId) {
+//   return fetchWithErrorHandling(
+//     `${BASE_URL}/3/movie/${movieId}/dune?api_key=${API_KEY}&language=en-US`,
+//   );
+// }
+
+// https://api.themoviedb.org/3/movie/{movie_id}/alternative_titles?api_key=<<api_key>>
+
+// https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+
+// https://api.themoviedb.org/3/trending/movie/day?api_key=<<api_key>>

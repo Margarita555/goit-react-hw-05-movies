@@ -11,11 +11,7 @@ function App() {
       <AppBar />
       <Routes>
         <Route exact path="/" element={<HomePage />}></Route>
-        <Route
-          exact
-          path="/movies/:movieId"
-          element={<MovieDetailsPage />}
-        ></Route>
+        <Route path="/movies/:movieId*" element={<MovieDetailsPage />}></Route>
       </Routes>
     </Container>
   );

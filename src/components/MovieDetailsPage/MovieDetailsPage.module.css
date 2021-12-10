@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+}
+
+.details {
+  margin-left: 20px;
+}
+
+.genre {
+  margin-right: 8px;
+}
+
+.score {
+  margin-left: 5px;
+}
