@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import * as movieApi from '../../services/movieAPI';
 import styles from './HomePage.module.css';
 
-export default function HomeView() {
+export default function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState([]);
   useEffect(() => {
     movieApi
@@ -18,7 +18,7 @@ export default function HomeView() {
       <ul>
         {trendingMovies.map(movie => (
           <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            <Link to={`movies/${movie.id}`}>{movie.title}</Link>
           </li>
         ))}
       </ul>

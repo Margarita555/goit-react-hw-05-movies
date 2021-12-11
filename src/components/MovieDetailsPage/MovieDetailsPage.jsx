@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import {
   useParams,
   NavLink,
@@ -7,15 +7,18 @@ import {
   // Link,
   useNavigate,
 } from 'react-router-dom';
+// import ErrorBoundary from '../../services/ErrorBoundary';
 import * as movieApi from '../../services/movieAPI';
-import Cast from '../Cast/Cast';
+// import Cast from '../Cast/Cast';
 import Reviews from '../Reviews/Reviews';
 import styles from './MovieDetailsPage.module.css';
 
-export default function MovieView() {
+const Cast = lazy(() => import('../Cast/Cast' /* webpackChunkName: "Cast" */));
+
+export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
-  // const [credit, setCredit] = useState([]);
+
   let navigate = useNavigate();
   function handleClick() {
     navigate('/');
@@ -23,6 +26,7 @@ export default function MovieView() {
   useEffect(() => {
     movieApi.fetchMovieById(movieId).then(setMovie);
     // movieApi.fetchMovieCast(movieId).then(setCredit);
+    // return setMovie(null);
   }, [movieId]);
   console.log(movie);
 
@@ -66,20 +70,29 @@ export default function MovieView() {
           <div className={styles.additionalInformation}>
             <ul>
               <li>
-                <NavLink end to="cast">
-                  Cast
-                </NavLink>
+                <NavLink to="cast">Cast</NavLink>
               </li>
               <li>
                 <NavLink to="rewiews">Reviews</NavLink>
               </li>
             </ul>
           </div>
-          ;
-          <Routes>
-            <Route path="cast" element={<Cast movieId={movieId} />} />
-            <Route path="rewiews" element={<Reviews />} />
-          </Routes>
+
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Routes>
+              <Route
+                path="cast"
+                element={
+                  movie && (
+                    // <ErrorBoundary>
+                    <Cast movieId={movieId} movie={movie} />
+                  )
+                  // </ErrorBoundary>
+                }
+              />
+              <Route path="rewiews" element={<Reviews />} />
+            </Routes>
+          </Suspense>
         </>
       )}
     </>

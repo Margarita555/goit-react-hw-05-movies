@@ -1,29 +1,57 @@
 import { useState, useEffect } from 'react';
-// import
-// useParams,
-// NavLink,
-// Route,
-// Routes,
-// Link,
-// useNavigate,
-// 'react-router-dom';
+
+import {
+  useParams,
+  // NavLink,
+  // Route,
+  // Routes,
+  // Link,
+  // useNavigate,
+} from 'react-router-dom';
 import * as movieApi from '../../services/movieAPI';
 // import styles from './Cast.module.css';
 
-export default function Cast({ movieId }) {
-  // const { movieId } = useParams();
+export default function Cast({ movie }) {
+  console.log(movie);
+  const { movieId } = useParams();
+  console.log(movieId);
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
     movieApi.fetchMovieCast(movieId).then(setCast);
+    function funk() {
+      console.log('funk');
+    }
+    return funk();
   }, [movieId]);
   console.log(cast.cast);
+
+  // useEffect(() => {
+  //   console.log('r');
+  // }, [cast]);
+
+  // if (cast.cast) {
+  //   return (
+  //     <>
+  //       jjjjjjjjjjjjj
+  //       <ul>
+  //         <li>ffffffffffffffffff</li>
+  //         {cast.cast.map(actor => (
+  //           <li key={actor.cast_id}>
+  //             <p>{actor.name}</p>
+  //             <p>{actor.character}</p>
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
       {cast && (
         <ul>
-          ffffffffffffffffff
+          <li>ffffffffffffffffff{movie.id}</li>
           {/* {cast.cast.map(actor => (
             <li key={actor.cast_id}>
               <p>{actor.name}</p>
