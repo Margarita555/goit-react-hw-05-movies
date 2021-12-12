@@ -1,63 +1,49 @@
 import { useState, useEffect } from 'react';
+import defaultImage from '../../images/person.png';
 
-import {
-  useParams,
-  // NavLink,
-  // Route,
-  // Routes,
-  // Link,
-  // useNavigate,
-} from 'react-router-dom';
 import * as movieApi from '../../services/movieAPI';
-// import styles from './Cast.module.css';
+import styles from './Cast.module.css';
 
-export default function Cast({ movie }) {
-  console.log(movie);
-  const { movieId } = useParams();
-  console.log(movieId);
-  const [cast, setCast] = useState([]);
+export default function Cast({ movieId }) {
+  // console.log(movieId);
+  const [cast, setCast] = useState(null);
 
   useEffect(() => {
-    movieApi.fetchMovieCast(movieId).then(setCast);
-    function funk() {
-      console.log('funk');
-    }
-    return funk();
+    let cleanup = false;
+    movieApi.fetchMovieCast(movieId).then(data => {
+      if (!cleanup) {
+        setCast(data);
+      }
+    });
+
+    return () => (cleanup = true);
   }, [movieId]);
-  console.log(cast.cast);
-
-  // useEffect(() => {
-  //   console.log('r');
-  // }, [cast]);
-
-  // if (cast.cast) {
-  //   return (
-  //     <>
-  //       jjjjjjjjjjjjj
-  //       <ul>
-  //         <li>ffffffffffffffffff</li>
-  //         {cast.cast.map(actor => (
-  //           <li key={actor.cast_id}>
-  //             <p>{actor.name}</p>
-  //             <p>{actor.character}</p>
-  //           </li>
-  //         ))}
-  //       </ul>
-  //     </>
-  //   );
-  // }
+  // console.log(cast);
 
   return (
     <>
       {cast && (
         <ul>
-          <li>ffffffffffffffffff{movie.id}</li>
-          {/* {cast.cast.map(actor => (
-            <li key={actor.cast_id}>
-              <p>{actor.name}</p>
-              <p>{actor.character}</p>
+          {cast.cast.map(({ cast_id, name, character, profile_path }) => (
+            <li key={cast_id}>
+              {profile_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w300${profile_path}`}
+                  alt={name}
+                  width="150"
+                />
+              ) : (
+                <img
+                  className={styles.defaultImage}
+                  src={defaultImage}
+                  alt={name}
+                  width="150"
+                />
+              )}
+              <p>{name}</p>
+              <p>{character}</p>
             </li>
-          ))} */}
+          ))}
         </ul>
       )}
     </>

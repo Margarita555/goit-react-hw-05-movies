@@ -7,6 +7,7 @@ async function fetchWithErrorHandling(url = '', config = {}) {
     ? await response.json()
     : Promise.reject(new Error('Not found'));
 }
+
 export function fetchTrendingMovies() {
   return fetchWithErrorHandling(
     `${BASE_URL}/3/trending/movie/day?api_key=${API_KEY}`,
@@ -24,12 +25,10 @@ export function fetchMovieCast(movieId) {
     `${BASE_URL}/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`,
   );
 }
-// https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
 
-// https://api.themoviedb.org/3/credit/{credit_id}?api_key=<<api_key>>
-
-// https://api.themoviedb.org/3/movie/{movie_id}/alternative_titles?api_key=<<api_key>>
-
-// https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-
-// https://api.themoviedb.org/3/trending/movie/day?api_key=<<api_key>>
+export function fetchMovieReviews(movieId) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/3/movie//${movieId}/reviews?api_key=${API_KEY}`,
+  );
+}
+// https://api.themoviedb.org/3/review/{review_id}?api_key=<<api_key>>
