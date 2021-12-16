@@ -61,14 +61,3 @@ export default function Cast({ movieId }) {
 // original_name: "Riz Ahmed"
 // popularity: 5.235
 // profile_path: "/1uP9RaX7BGVx7XGT
-
-//  <li>
-//    <img
-//      className={styles.actorPhoto}
-//      src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
-//      alt={actor.name}
-//      width="100"
-//    />
-//    <p>{actor.name}</p>
-//    <p>{actor.character}</p>
-//  </li>;

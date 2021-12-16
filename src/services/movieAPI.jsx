@@ -31,4 +31,12 @@ export function fetchMovieReviews(movieId) {
     `${BASE_URL}/3/movie//${movieId}/reviews?api_key=${API_KEY}`,
   );
 }
+
+export function fetchMovieByQuery(query) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/3/search/movie?api_key=${API_KEY}&query=${query}&page=1`,
+  );
+}
+
+// https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
 // https://api.themoviedb.org/3/review/{review_id}?api_key=<<api_key>>

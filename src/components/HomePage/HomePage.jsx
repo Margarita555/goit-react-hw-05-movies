@@ -11,7 +11,7 @@ export default function HomePage() {
       .then(obj => obj.results)
       .then(setTrendingMovies);
   }, []);
-  console.log(trendingMovies);
+  // console.log(trendingMovies);
   return (
     <>
       <h1 className={styles.title}>Trending Today</h1>
