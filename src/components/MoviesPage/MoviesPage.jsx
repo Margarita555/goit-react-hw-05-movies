@@ -37,7 +37,7 @@ export default function MoviesPage() {
       <Searchbar onSubmit={handleFormSubmit} />
       {/* {loading && <LoadingElement />} */}
       {error && <h1 className={styles.errorMessage}>{error.message}</h1>}
-      {/* <MoviesQueryList movies={movies} /> */}
+      {/* <MoviesList movies={movies} /> */}
     </div>
   );
 }

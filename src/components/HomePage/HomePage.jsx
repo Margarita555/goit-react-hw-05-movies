@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import * as movieApi from '../../services/movieAPI';
+import MoviesList from '../MoviesList/MoviesList';
 import styles from './HomePage.module.css';
 
 export default function HomePage() {
@@ -15,13 +16,14 @@ export default function HomePage() {
   return (
     <>
       <h1 className={styles.title}>Trending Today</h1>
-      <ul>
+      <MoviesList movies={trendingMovies} />
+      {/* <ul>
         {trendingMovies.map(movie => (
           <li key={movie.id}>
             <Link to={`movies/${movie.id}`}>{movie.title}</Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </>
   );
 }
