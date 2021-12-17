@@ -1,6 +1,7 @@
-/* .link {
+nav-link {
   color: #127c32;
 }
-.activeLink {
-  color: rgb(234, 0, 255);
-} */
+
+.activated {
+  color: orangered;
+}

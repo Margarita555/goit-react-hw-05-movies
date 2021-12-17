@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="movies/*" element={<MoviesPage />}></Route>
-        <Route path="movies/:movieId/*" element={<MovieDetailsPage />}></Route>
+        <Route path="movies/:movieId/*" element={<MovieDetailsPage />} />
         <Route path="*" element={<NotFoundPage />}></Route>
       </Routes>
     </Container>
@@ -22,3 +22,16 @@ function App() {
 }
 
 export default App;
+// function App() {
+//   return (
+//     <Container>
+//       <AppBar />
+//       <Routes>
+//         <Route path="/" element={<HomePage />}></Route>
+//         <Route path="movies/*" element={<MoviesPage />}></Route>
+//         <Route path="movies/:movieId/*" element={<MovieDetailsPage />}></Route>
+//         <Route path="*" element={<NotFoundPage />}></Route>
+//       </Routes>
+//     </Container>
+//   );
+// }
