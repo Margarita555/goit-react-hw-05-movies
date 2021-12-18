@@ -18,14 +18,13 @@ export default function Cast({ movieId }) {
 
     return () => (cleanup = true);
   }, [movieId]);
-  // console.log(cast);
 
   return (
-    <>
+    <div className={styles.container}>
       {cast && (
-        <ul>
+        <ul className={styles.gallery}>
           {cast.cast.map(({ cast_id, name, character, profile_path }) => (
-            <li key={cast_id}>
+            <li key={cast_id} className={styles.galleryItem}>
               {profile_path ? (
                 <img
                   src={`https://image.tmdb.org/t/p/w300${profile_path}`}
@@ -40,13 +39,13 @@ export default function Cast({ movieId }) {
                   width="150"
                 />
               )}
-              <p>{name}</p>
-              <p>{character}</p>
+              <p className={styles.name}>{name}</p>
+              <p className={styles.name}>{character}</p>
             </li>
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 }
 // adult: false

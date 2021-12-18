@@ -22,6 +22,7 @@ export default function Searchbar({ onSubmit }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <ToastContainer />
+      {/* <div> */}
       <input
         className={styles.input}
         type="text"
@@ -34,6 +35,7 @@ export default function Searchbar({ onSubmit }) {
       <button type="submit" className={styles.button}>
         Search
       </button>
+      {/* </div> */}
     </form>
   );
 }

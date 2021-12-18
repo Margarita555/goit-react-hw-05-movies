@@ -1,0 +1,18 @@
+.container {
+  margin-right: 50px;
+  padding: 20px;
+  background-color: rgba(110, 110, 170, 0.808);
+  border-top-right-radius: 10px;
+}
+
+.authorTitle {
+  margin: 10px 0;
+  font-size: 22px;
+
+  color: #110442d0;
+}
+
+.content {
+  font-size: 18px;
+  color: #08021bd0;
+}

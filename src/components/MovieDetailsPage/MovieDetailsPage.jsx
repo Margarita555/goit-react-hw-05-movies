@@ -49,8 +49,10 @@ export default function MovieDetailsPage() {
   console.log(movie);
 
   return (
-    <>
-      <button onClick={handleClick}>go home</button>
+    <div className={styles.container}>
+      <button onClick={handleClick} className={styles.goBackBtn}>
+        Go home
+      </button>
       {/* <Link to="..">
         <button>Go back</button>
       </Link> */}
@@ -70,29 +72,43 @@ export default function MovieDetailsPage() {
               defaultImage
             )}
             <div className={styles.details}>
-              <h1 className={styles.filmTitle}>{movie.title}</h1>
+              <h1 className={styles.movieTitle}>{movie.title}</h1>
               <p className={styles.scoreTitle}>
                 User score:
                 <span className={styles.score}>{movie.popularity}</span>
               </p>
               <h2 className={styles.overviewTitle}>Overview</h2>
               <p className={styles.overview}>{movie.overview}</p>
-              <h3 className={styles.title}>Genres</h3>
+              <h3 className={styles.genresTitle}>Genres</h3>
               {movie.genres &&
                 movie.genres.map(({ id, name }) => (
-                  <span key={id} className={styles.genre}>
+                  <span key={id} className={styles.genres}>
                     {name}
                   </span>
                 ))}
             </div>
           </div>
           <div className={styles.additionalInformation}>
-            <ul>
-              <li>
-                <NavLink to="cast">Cast</NavLink>
+            <ul className={styles.list}>
+              <li className={styles.listItem}>
+                <NavLink
+                  to="cast"
+                  className={({ isActive }) =>
+                    isActive ? `${styles.active}` : ''
+                  }
+                >
+                  Cast
+                </NavLink>
               </li>
-              <li>
-                <NavLink to="rewiews">Reviews</NavLink>
+              <li className={styles.listItem}>
+                <NavLink
+                  to="rewiews"
+                  className={({ isActive }) =>
+                    isActive ? `${styles.active}` : ''
+                  }
+                >
+                  Reviews
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -114,6 +130,6 @@ export default function MovieDetailsPage() {
           </Suspense>
         </>
       )}
-    </>
+    </div>
   );
 }

@@ -1,0 +1,12 @@
+.title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #110442d0;
+  text-align: center;
+}
+
+.errorMessage {
+  text-align: center;
+  font-size: 18px;
+  color: #404040;
+}

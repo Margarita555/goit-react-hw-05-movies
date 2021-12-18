@@ -17,7 +17,7 @@ export default function Reviews({ movieId }) {
   console.log(reviews.results);
 
   return (
-    <>
+    <div className={styles.container}>
       <ul>
         {reviews &&
           reviews.results.map(({ author, content, id }) => (
@@ -29,6 +29,6 @@ export default function Reviews({ movieId }) {
             </li>
           ))}
       </ul>
-    </>
+    </div>
   );
 }

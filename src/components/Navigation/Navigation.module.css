@@ -1,7 +1,12 @@
 nav a {
-  color: #127c32;
+  margin-left: 30px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #ffffff;
 }
 
 .active {
-  color: orangered;
+  font-size: 25px;
+  color: rgb(150, 185, 218);
+  text-decoration: rgb(150, 185, 218);
 }
