@@ -3,6 +3,7 @@ import { useLocation, useNavigate, createSearchParams } from 'react-router-dom';
 import * as movieApi from '../../services/movieAPI';
 import MoviesList from '../MoviesList/MoviesList';
 import Searchbar from '../Searchbar/Searchbar';
+import Spinner from '../Spinner/Spinner';
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 import styles from './MoviesPage.module.css';
@@ -10,7 +11,7 @@ import styles from './MoviesPage.module.css';
 export default function MoviesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState([]);
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const location = useLocation();
   let navigate = useNavigate();
@@ -21,14 +22,14 @@ export default function MoviesPage() {
     if (!searchQuery) {
       return;
     }
-    // setLoading(true);
+    setLoading(true);
     movieApi
       .fetchMovieByQuery(searchQuery)
       .then(({ results }) => {
         setMovies([...results]);
       })
-      .catch(error => setError({ error }));
-    // .finally(() => setLoading(false));
+      .catch(error => setError(error))
+      .finally(() => setLoading(false));
   }, [searchQuery]);
 
   const handleFormSubmit = query => {
@@ -55,8 +56,8 @@ export default function MoviesPage() {
   return (
     <div className={styles.searchbar}>
       <Searchbar onSubmit={handleFormSubmit} />
-      {/* {loading && <LoadingElement />} */}
-      {error && <h1 className={styles.errorMessage}>{error.message}</h1>}
+      {loading && <Spinner />}
+      {error && <p className={styles.errorMessage}>{error.message}</p>}
       <MoviesList movies={movies} />
     </div>
   );

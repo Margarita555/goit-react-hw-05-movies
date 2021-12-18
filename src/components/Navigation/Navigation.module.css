@@ -1,7 +1,7 @@
-nav-link {
+nav a {
   color: #127c32;
 }
 
-.activated {
+.active {
   color: orangered;
 }

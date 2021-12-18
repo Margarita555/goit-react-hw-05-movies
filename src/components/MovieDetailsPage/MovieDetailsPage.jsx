@@ -9,17 +9,22 @@ import {
 } from 'react-router-dom';
 // import ErrorBoundary from '../../services/ErrorBoundary';
 import * as movieApi from '../../services/movieAPI';
+import Spinner from '../Spinner/Spinner';
 // import Cast from '../Cast/Cast';
-import Reviews from '../Reviews/Reviews';
+// import Reviews from '../Reviews/Reviews';
 import defaultImage from '../../images/posterbackground.jpg';
 import styles from './MovieDetailsPage.module.css';
 
 const Cast = lazy(() => import('../Cast/Cast' /* webpackChunkName: "Cast" */));
+const Reviews = lazy(() =>
+  import('../Reviews/Reviews' /* webpackChunkName: "Reviews" */),
+);
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
-  // const [cast, setCast] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   let navigate = useNavigate();
   function handleClick() {
@@ -27,13 +32,18 @@ export default function MovieDetailsPage() {
   }
 
   useEffect(() => {
+    setLoading(true);
     let cleanup = false;
 
-    movieApi.fetchMovieById(movieId).then(data => {
-      if (!cleanup) {
-        setMovie(data);
-      }
-    });
+    movieApi
+      .fetchMovieById(movieId)
+      .then(data => {
+        if (!cleanup) {
+          setMovie(data);
+        }
+      })
+      .catch(error => setError(error))
+      .finally(() => setLoading(false));
     return () => (cleanup = true);
   }, [movieId]);
   console.log(movie);
@@ -42,8 +52,10 @@ export default function MovieDetailsPage() {
     <>
       <button onClick={handleClick}>go home</button>
       {/* <Link to="..">
-        <button className={styles.goBackBtn}>Go back</button>
+        <button>Go back</button>
       </Link> */}
+      {loading && <Spinner />}
+      {error && <p className={styles.errorMessage}>{error.message}</p>}
       {movie && (
         <>
           <div className={styles.wrapper}>

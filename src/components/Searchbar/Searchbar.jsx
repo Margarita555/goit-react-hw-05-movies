@@ -1,6 +1,6 @@
 import { useState } from 'react';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './Searchbar.module.css';
 
 export default function Searchbar({ onSubmit }) {
@@ -12,16 +12,16 @@ export default function Searchbar({ onSubmit }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // if (query.trim() === '') {
-    //   toast('Type in the keyword');
-    //   return;
-    // }
+    if (query.trim() === '') {
+      toast('Type in the keyword');
+      return;
+    }
 
     onSubmit(query);
   };
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <input
         className={styles.input}
         type="text"
