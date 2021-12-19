@@ -12,19 +12,31 @@ export default function HomePage() {
 
   useEffect(() => {
     setLoading(true);
-    movieApi
-      .fetchTrendingMovies()
-      .then(obj => obj.results)
-      .then(setTrendingMovies)
-      .catch(error => setError(error))
-      .finally(() => setLoading(false));
+    async function fetchData() {
+      try {
+        const { results } = await movieApi.fetchTrendingMovies();
+        setTrendingMovies(results);
+      } catch (error) {
+        console.log(error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+    // movieApi
+    //   .fetchTrendingMovies()
+    //   .then(obj => obj.results)
+    //   .then(setTrendingMovies)
+    //   .catch(error => setError(error))
+    //   .finally(() => setLoading(false));
   }, []);
   // console.log(trendingMovies);
   return (
     <>
       <h1 className={styles.title}>Trending Today</h1>
       {loading && <Spinner />}
-      {error && <p className={styles.errorMessage}>{error.message}</p>}
+      {error && <h2 className={styles.errorMessage}>No movies found</h2>}
       <MoviesList movies={trendingMovies} />
       {/* <ul>
         {trendingMovies.map(movie => (

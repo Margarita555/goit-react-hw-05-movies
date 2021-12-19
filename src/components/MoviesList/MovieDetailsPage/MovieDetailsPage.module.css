@@ -36,7 +36,7 @@
 .movieTitle {
   margin-bottom: 20px;
   font-size: 32px;
-  color: #0c0527d0;
+  color: #140646d0;
 }
 
 .scoreTitle {
@@ -47,8 +47,9 @@
 }
 
 .score {
+  margin-left: 5px;
   font-size: 18px;
-  color: #08021bd0;
+  color: #140646d0;
 }
 
 .overviewTitle {
@@ -76,41 +77,37 @@
   color: #08021bd0;
 }
 
-.score {
-  margin-left: 5px;
-}
-
 .list {
   display: flex;
 }
 
-.listItem {
+.additionalInformation a {
   text-align: center;
+  display: inline-block;
   width: 145px;
   padding: 8px 15px;
   margin-right: 10px;
   box-shadow: 1px -3px 5px 0px rgba(15, 22, 110, 0.75);
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
-  background-color: rgba(110, 110, 170, 0.808);
-}
-
-.listItem:hover {
   background-color: rgba(101, 101, 153, 0.808);
-}
 
-a {
   color: #110442d0;
   font-size: 22px;
   font-weight: 500;
+}
+
+.additionalInformation a:hover {
+  background-color: rgba(110, 110, 170, 0.808);
+}
+
+.additionalInformation .active {
+  color: #dfeff5;
+  background-color: rgba(110, 110, 170, 0.808);
 }
 
 .errorMessage {
   text-align: center;
   font-size: 20px;
   color: #404040;
-}
-
-.active {
-  color: #dfeff5;
 }

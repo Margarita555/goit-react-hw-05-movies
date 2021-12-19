@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import 'modern-normalize/modern-normalize.css';
 import App from './components/App/App';
-// import reportWebVitals from './reportWebVitals';
 import './index.css';
 
 ReactDOM.render(
@@ -14,5 +13,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
-
-// reportWebVitals();

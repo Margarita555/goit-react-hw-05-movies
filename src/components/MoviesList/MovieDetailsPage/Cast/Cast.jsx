@@ -1,26 +1,33 @@
 import { useState, useEffect } from 'react';
-import defaultImage from '../../images/person.png';
+import defaultImage from '../../../../images/person.png';
 
-import * as movieApi from '../../services/movieAPI';
+import * as movieApi from '../../../../services/movieAPI';
 import styles from './Cast.module.css';
 
 export default function Cast({ movieId }) {
-  // console.log(movieId);
   const [cast, setCast] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     let cleanup = false;
-    movieApi.fetchMovieCast(movieId).then(data => {
-      if (!cleanup) {
-        setCast(data);
+    async function fetchData() {
+      try {
+        const data = await movieApi.fetchMovieCast(movieId);
+        if (!cleanup) {
+          setCast(data);
+        }
+      } catch (error) {
+        console.log(error);
+        setError(error);
       }
-    });
-
+    }
+    fetchData();
     return () => (cleanup = true);
   }, [movieId]);
 
   return (
     <div className={styles.container}>
+      {error && <h2 className={styles.errorMessage}>No movies found</h2>}
       {cast && (
         <ul className={styles.gallery}>
           {cast.cast.map(({ cast_id, name, character, profile_path }) => (
@@ -45,18 +52,11 @@ export default function Cast({ movieId }) {
           ))}
         </ul>
       )}
+      {cast && !cast.cast.length && (
+        <p className={styles.message}>
+          We don't have any information about the cast for this movie.
+        </p>
+      )}
     </div>
   );
 }
-// adult: false
-// cast_id: 1
-// character: "Malik Khan"
-// credit_id: "5f21a38043999b0037544207"
-// gender: 2
-// id: 53240
-// known_for_department: "Acting"
-// name: "Riz Ahmed"
-// order: 1
-// original_name: "Riz Ahmed"
-// popularity: 5.235
-// profile_path: "/1uP9RaX7BGVx7XGT

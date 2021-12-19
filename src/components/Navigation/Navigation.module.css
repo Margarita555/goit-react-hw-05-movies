@@ -2,11 +2,11 @@ nav a {
   margin-left: 30px;
   font-size: 24px;
   font-weight: 500;
-  color: #ffffff;
+  color: rgb(150, 185, 218);
 }
 
 .active {
   font-size: 25px;
-  color: rgb(150, 185, 218);
+  color: #ffffff;
   text-decoration: rgb(150, 185, 218);
 }

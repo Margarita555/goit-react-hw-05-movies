@@ -4,20 +4,18 @@ import {
   NavLink,
   Route,
   Routes,
-  // Link,
   useNavigate,
 } from 'react-router-dom';
-// import ErrorBoundary from '../../services/ErrorBoundary';
-import * as movieApi from '../../services/movieAPI';
-import Spinner from '../Spinner/Spinner';
+import * as movieApi from '../../../services/movieAPI';
+import Spinner from '../../Spinner/Spinner';
 // import Cast from '../Cast/Cast';
 // import Reviews from '../Reviews/Reviews';
-import defaultImage from '../../images/posterbackground.jpg';
+import defaultImage from '../../../images/posterbackground.jpg';
 import styles from './MovieDetailsPage.module.css';
 
-const Cast = lazy(() => import('../Cast/Cast' /* webpackChunkName: "Cast" */));
+const Cast = lazy(() => import('./Cast/Cast' /* webpackChunkName: "Cast" */));
 const Reviews = lazy(() =>
-  import('../Reviews/Reviews' /* webpackChunkName: "Reviews" */),
+  import('./Reviews/Reviews' /* webpackChunkName: "Reviews" */),
 );
 
 export default function MovieDetailsPage() {
@@ -35,19 +33,27 @@ export default function MovieDetailsPage() {
     setLoading(true);
     let cleanup = false;
 
-    movieApi
-      .fetchMovieById(movieId)
-      .then(data => {
+    async function fetchData() {
+      try {
+        const data = await movieApi.fetchMovieById(movieId);
         if (!cleanup) {
           setMovie(data);
         }
-      })
-      .catch(error => setError(error))
-      .finally(() => setLoading(false));
+      } catch (error) {
+        console.log(error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+
     return () => (cleanup = true);
   }, [movieId]);
-  console.log(movie);
 
+  // const score = () => {
+  //   return Math.round(Number(movie.vote_average));
+  // };
   return (
     <div className={styles.container}>
       <button onClick={handleClick} className={styles.goBackBtn}>
@@ -57,7 +63,7 @@ export default function MovieDetailsPage() {
         <button>Go back</button>
       </Link> */}
       {loading && <Spinner />}
-      {error && <p className={styles.errorMessage}>{error.message}</p>}
+      {error && <h2 className={styles.errorMessage}>No movies found</h2>}
       {movie && (
         <>
           <div className={styles.wrapper}>
@@ -75,7 +81,7 @@ export default function MovieDetailsPage() {
               <h1 className={styles.movieTitle}>{movie.title}</h1>
               <p className={styles.scoreTitle}>
                 User score:
-                <span className={styles.score}>{movie.popularity}</span>
+                <span className={styles.score}>{movie.vote_average * 10}%</span>
               </p>
               <h2 className={styles.overviewTitle}>Overview</h2>
               <p className={styles.overview}>{movie.overview}</p>
@@ -113,17 +119,11 @@ export default function MovieDetailsPage() {
             </ul>
           </div>
 
-          <Suspense fallback={<h1>Loading...</h1>}>
+          <Suspense fallback={<Spinner />}>
             <Routes>
               <Route
                 path="cast"
-                element={
-                  movie && (
-                    // <ErrorBoundary>
-                    <Cast movieId={movieId} />
-                  )
-                  // </ErrorBoundary>
-                }
+                element={movie && <Cast movieId={movieId} />}
               />
               <Route path="rewiews" element={<Reviews movieId={movieId} />} />
             </Routes>
