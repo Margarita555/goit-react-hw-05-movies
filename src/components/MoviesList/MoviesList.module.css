@@ -19,10 +19,6 @@
   background-color: rgba(110, 110, 170, 0.808);
 }
 
-/* ul a {
-  cursor: pointer;
-} */
-
 .movieTitle {
   margin: 7px 4px 9px 5px;
 
@@ -30,8 +26,6 @@
   font-size: 16px;
   color: #17045cd0;
   font-weight: 500;
-
-  /* border: 1px solid #17045cd0; */
 }
 
 .movieTitle:hover {
@@ -39,8 +33,6 @@
 }
 
 img {
-  /* box-shadow: 10px 10px 5px -8px rgba(15, 22, 110, 0.75); */
-  /* border-radius: 3px; */
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
 }

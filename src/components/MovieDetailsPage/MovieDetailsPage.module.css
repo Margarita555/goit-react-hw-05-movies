@@ -35,7 +35,6 @@
 
 .movieTitle {
   margin-bottom: 20px;
-  /* color: #070218d0; */
   font-size: 32px;
   color: #0c0527d0;
 }
@@ -57,7 +56,6 @@
   margin-bottom: 8px;
   color: #170750d0;
   font-size: 26px;
-  /* color: #070218d0; */
 }
 
 .overview {
@@ -90,10 +88,8 @@
   text-align: center;
   width: 145px;
   padding: 8px 15px;
-  /* margin-bottom: 10px; */
   margin-right: 10px;
   box-shadow: 1px -3px 5px 0px rgba(15, 22, 110, 0.75);
-
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
   background-color: rgba(110, 110, 170, 0.808);
@@ -117,5 +113,4 @@ a {
 
 .active {
   color: #dfeff5;
-  /* background-color: crimson; */
 }
