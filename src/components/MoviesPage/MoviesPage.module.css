@@ -1,3 +1,6 @@
+.wrapper {
+  margin-left: 50px;
+}
 .errorMessage {
   text-align: center;
   font-size: 22px;

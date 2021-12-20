@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import defaultImage from '../../../../images/person.png';
-
 import * as movieApi from '../../../../services/movieAPI';
 import styles from './Cast.module.css';
 
@@ -17,7 +16,6 @@ export default function Cast({ movieId }) {
           setCast(data);
         }
       } catch (error) {
-        console.log(error);
         setError(error);
       }
     }

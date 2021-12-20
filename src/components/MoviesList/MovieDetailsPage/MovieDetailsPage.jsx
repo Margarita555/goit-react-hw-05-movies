@@ -1,15 +1,8 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import {
-  useParams,
-  NavLink,
-  Route,
-  Routes,
-  useNavigate,
-} from 'react-router-dom';
+import { useParams, NavLink, Route, Routes } from 'react-router-dom';
 import * as movieApi from '../../../services/movieAPI';
+import GoBackButton from './GoBackButton/GoBackButton';
 import Spinner from '../../Spinner/Spinner';
-// import Cast from '../Cast/Cast';
-// import Reviews from '../Reviews/Reviews';
 import defaultImage from '../../../images/posterbackground.jpg';
 import styles from './MovieDetailsPage.module.css';
 
@@ -23,11 +16,6 @@ export default function MovieDetailsPage() {
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  let navigate = useNavigate();
-  function handleClick() {
-    navigate('/');
-  }
 
   useEffect(() => {
     setLoading(true);
@@ -47,21 +35,12 @@ export default function MovieDetailsPage() {
       }
     }
     fetchData();
-
     return () => (cleanup = true);
   }, [movieId]);
 
-  // const score = () => {
-  //   return Math.round(Number(movie.vote_average));
-  // };
   return (
     <div className={styles.container}>
-      <button onClick={handleClick} className={styles.goBackBtn}>
-        Go home
-      </button>
-      {/* <Link to="..">
-        <button>Go back</button>
-      </Link> */}
+      <GoBackButton />
       {loading && <Spinner />}
       {error && <h2 className={styles.errorMessage}>No movies found</h2>}
       {movie && (

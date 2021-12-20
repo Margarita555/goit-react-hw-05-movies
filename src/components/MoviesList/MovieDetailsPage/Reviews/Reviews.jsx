@@ -16,27 +16,16 @@ export default function Reviews({ movieId }) {
           setReviews(data);
         }
       } catch (error) {
-        console.log(error);
         setError(error);
       }
-      // finally {
-      //   setLoading(false);
-      // }
     }
     fetchData();
-    // movieApi.fetchMovieReviews(movieId).then(data => {
-    //   if (!cleanup) {
-    //     setReviews(data);
-    //   }
-    // });
     return () => (cleanup = true);
   }, [movieId]);
-  console.log(reviews.results);
 
   return (
     <div className={styles.container}>
       {error && <h2 className={styles.errorMessage}>No movies found</h2>}
-
       <ul>
         {reviews &&
           reviews.results.map(({ author, content, id }) => (

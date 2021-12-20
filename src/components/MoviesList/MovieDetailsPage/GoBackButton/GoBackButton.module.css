@@ -1,0 +1,14 @@
+.goBackBtn {
+  position: absolute;
+  border: none;
+  max-width: 150px;
+  padding: 8px 15px;
+  margin-bottom: 10px;
+  box-shadow: 10px 10px 5px -8px rgba(15, 22, 110, 0.75);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: rgba(110, 110, 170, 0.808);
+  color: #110442d0;
+  font-size: 18px;
+  font-weight: 500;
+}
