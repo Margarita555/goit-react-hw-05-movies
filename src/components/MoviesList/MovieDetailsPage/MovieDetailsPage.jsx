@@ -1,6 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { useParams, NavLink, Route, Routes } from 'react-router-dom';
-import * as movieApi from '../../../services/movieAPI';
+import * as movieApi from '../../../services/movieAPI.js';
 import GoBackButton from './GoBackButton/GoBackButton';
 import Spinner from '../../Spinner/Spinner';
 import defaultImage from '../../../images/posterbackground.jpg';

@@ -3,12 +3,11 @@ const axios = require('axios').default;
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 axios.defaults.params = { api_key: '0c84cfbf78c105c94754289aeb8500f8' };
 
-async function fetchWithErrorHandling(url = '', config = {}) {
+async function fetchWithErrorHandling(url = '') {
   try {
     const { data } = await axios.get(url);
     return data;
   } catch (error) {
-    console.log(error);
     return error(`No movies found`);
   }
 }

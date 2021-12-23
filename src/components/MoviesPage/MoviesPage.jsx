@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, createSearchParams } from 'react-router-dom';
-import * as movieApi from '../../services/movieAPI';
+import * as movieApi from '../../services/movieAPI.js';
 import GoBackButton from '../MoviesList/MovieDetailsPage/GoBackButton/GoBackButton';
 import MoviesList from '../MoviesList/MoviesList';
 import Searchbar from '../Searchbar/Searchbar';

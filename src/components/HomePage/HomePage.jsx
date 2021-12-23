@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import * as movieApi from '../../services/movieAPI';
+import * as movieApi from '../../services/movieAPI.js';
 import MoviesList from '../MoviesList/MoviesList';
 import Spinner from '../Spinner/Spinner';
 import styles from './HomePage.module.css';
@@ -16,7 +16,6 @@ export default function HomePage() {
         const { results } = await movieApi.fetchTrendingMovies();
         setTrendingMovies(results);
       } catch (error) {
-        console.log(error);
         setError(error);
       } finally {
         setLoading(false);

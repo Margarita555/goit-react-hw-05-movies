@@ -23,10 +23,10 @@ function App() {
       <AppBar />
       <Suspense fallback={<Spinner />}>
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="movies/*" element={<MoviesPage />}></Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="movies/*" element={<MoviesPage />} />
           <Route path="movies/:movieId/*" element={<MovieDetailsPage />} />
-          <Route path="*" element={<NotFoundPage />}></Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </Container>
